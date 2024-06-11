@@ -10,8 +10,9 @@ do
   submit_file="submit_${count}.bash"
   cp submit.bash $submit_file
   
-  # Replace the number of tasks in the temporary submit file
+  # Replace the number of tasks and nodes in the temporary submit file
   sed -i "s/^#SBATCH -n [0-9]\+/#SBATCH -n $count/" $submit_file
+  sed -i "s/^#SBATCH -N [0-9]\+/#SBATCH -N $count/" $submit_file
   
   # Submit the job using the temporary submit file
   sbatch $submit_file
